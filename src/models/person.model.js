@@ -10,23 +10,24 @@ db.once("open", function() {
 });
 
 let personSchema = new mongoose.Schema({
+  //_id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 20
   },
-  Age: {
-    type: Number
-    //required: true
+  age: {
+    type: Number,
+    required: true
   },
-  Gender: {
-    type: String
-    //required: true
+  gender: {
+    type: String,
+    required: true
   },
-  Mobilenumber: {
-    type: Number
-    //required: true
+  mobile: {
+    type: Number,
+    required: true
   }
 });
 

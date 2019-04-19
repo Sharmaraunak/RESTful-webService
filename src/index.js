@@ -1,24 +1,42 @@
 let express = require("express");
 let app = express();
 let path = require("path");
-let personRoute = require("./routes/person.js");
+let personRoute = require("./routes/person");
 let bodyParser = require("body-parser");
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  res.header("Acess-Control-Allow-Origin", "*");
+  res.header(
+    "Acess-Control-Allow-Headers",
+    "Origin,X-Requested-With,Content-Type,Accept,Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Allow-Control-Allow-Headers", "PUT,POST,DELETE,GET");
+    return res.status(200).json({});
+  }
+});
 app.use(personRoute);
 app.use((req, res, next) => {
   console.log(`${new Date().toString()}=>${req.originalUrl}`, req.body);
   next();
 });
 app.use((req, res, next) => {
-  res.status(404).send("Lost");
+  const error = new Error("Not foumd");
+  error.status(404);
+  next(error);
 });
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.sendFile(path.join(__dirname, "../public/500.html"));
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
 });
 
 const port = process.env.port || 5000;

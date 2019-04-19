@@ -4,22 +4,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Welcome</title>
   </head>
-  <body>
-    <form action="/person" method="POST">
-      name: <input type="text" name="name" /><br />
-      Age: <input type="number" name="age" /><br />
-      Gender: >
-      <select name="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-      <br />
-      Mobilenumber: <input type="number" name="mobile" /><br />
-      <input type="submit" value="Submit" />
-    </form>
-
+  <body class="mt-4">
+    <div class="container">
+      <div class="card" class="m-2" style="width:20rem">
+        <div class="card-header">
+          <legend>Insert Data</legend>
+        </div>
+        <form action="/person" method="POST">
+          <div class="form-group">
+            <label for="inputName">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              name="name"
+              placeholder="Ken Adams"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAge">Age</label>
+            <input
+              type="number"
+              class="form-control"
+              id="inputAge"
+              name="age"
+              placeholder="15"
+              min="15"
+              max="120"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputGender">Gender</label>
+            <select id="inputState" class="form-control" name="gender">
+              <option selected>Male</option>
+              <option>Female</option>
+              <option>Non Binary</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inputMobile">Mobilenumber</label>
+            <input
+              type="number"
+              class="form-control"
+              id="inputMobile"
+              name="mobile"
+              placeholder="4585221511"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary" class="mr-2">
+            <i class="fa fa-database"></i>
+            Submit
+          </button>
+          <button type="button" class="btn btn-secondary">
+            <i class="fa fa-table"></i>
+            View-all
+          </button>
+        </form>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
